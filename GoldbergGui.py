@@ -31,7 +31,7 @@ def seleccionar_dll() -> str | None:
     root.withdraw()
     root.attributes("-topmost", True)
     archivo = filedialog.askopenfilename(
-        title="Seleccionar archivo .dll",
+        title="Selecciona steam_api(64).dll",
         filetypes=[("Archivos DLL", "*.dll")]
     )
     root.destroy()
