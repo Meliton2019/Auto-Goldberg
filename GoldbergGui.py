@@ -19,7 +19,7 @@ def descargar_zip(url: str, destino: str) -> None:
 
 
 def extraer_zip(zip_path: str, carpeta_destino: str) -> list[str]:
-    print("📦 Extrayendo...")
+    print("Extrayendo...")
     with zipfile.ZipFile(zip_path, "r") as zf:
         nombres = zf.namelist()
         zf.extractall(carpeta_destino)
@@ -49,9 +49,9 @@ def reemplazar_dll(ruta_dll: str) -> None:
 
     if origen:
         shutil.copy2(origen, ruta_dll)
-        print(f"✅ {nombre_dll} reemplazado.")
+        print(f"{nombre_dll} reemplazado.")
     else:
-        print(f"⚠️  '{nombre_dll}' no encontrado en '{EXTRACT_DIR}'.")
+        print(f"'{nombre_dll}' no encontrado en '{EXTRACT_DIR}'.")
 
 
 def crear_carpeta_settings(ruta_dll: str) -> str:
@@ -115,7 +115,7 @@ def guardar_numero(carpeta_settings: str, numero: str) -> None:
 def guardar_dlcs(carpeta_settings: str, appid: str) -> None:
     dlc_ids = obtener_dlcs(appid)
     if not dlc_ids:
-        print("⚠️  No se encontraron DLCs.")
+        print("No se encontraron DLCs.")
         return
 
     ruta_txt = os.path.join(carpeta_settings, "dlc.txt")
@@ -126,7 +126,7 @@ def guardar_dlcs(carpeta_settings: str, appid: str) -> None:
                 f.write(f"{dlc_id}={nombre}\n")
                 print(f"  ✔ {dlc_id}={nombre}")
 
-    print("✅ dlc.txt guardado.")
+    print("dlc.txt guardado.")
 
 
 def guardar_account_name(carpeta_settings: str) -> None:
@@ -168,20 +168,17 @@ if __name__ == "__main__":
     numero = pedir_numero()
     nombre = obtener_nombre_juego(numero)
     if nombre:
-        print(f"🎮 {nombre}")
+        print(f"{nombre}")
     else:
-        print("⚠️  AppID no encontrado.")
+        print("AppID no encontrado.")
 
     guardar_numero(carpeta_settings, numero)
-    print("✅ steam_appid.txt guardado.")
 
     guardar_dlcs(carpeta_settings, numero)
 
     guardar_account_name(carpeta_settings)
-    print("✅ account_name.txt guardado.")
+    
 
     guardar_language(carpeta_settings)
-    print("✅ language.txt guardado.")
     
     guardar_force_account_name(carpeta_settings)
-    print("✅ force_account_name.txt guardado.")
