@@ -6,7 +6,7 @@ import tkinter as tk
 from tkinter import filedialog
 import requests
 
-# ── CONFIGURACIÓN ──────────────────────────────────────────────
+# ── CFG ──────────────────────────────────────────────
 REPO_URL = "https://github.com/Meliton2019/goldberg/releases/download/Latest/goldberg.zip"
 ZIP_NAME = "goldberg.zip"
 EXTRACT_DIR = "goldberg"
@@ -14,12 +14,12 @@ EXTRACT_DIR = "goldberg"
 
 
 def descargar_zip(url: str, destino: str) -> None:
-    print("⬇  Descargando goldberg...")
+    print("Downloading goldberg...")
     urllib.request.urlretrieve(url, destino)
 
 
 def extraer_zip(zip_path: str, carpeta_destino: str) -> list[str]:
-    print("Extrayendo...")
+    print("Extracting...")
     with zipfile.ZipFile(zip_path, "r") as zf:
         nombres = zf.namelist()
         zf.extractall(carpeta_destino)
@@ -66,7 +66,7 @@ def pedir_numero() -> str:
         valor = input("Introduce el AppID de Steam: ").strip()
         if valor.isdigit():
             return valor
-        print("⚠️  Solo números.")
+        print("Invalido.")
 
 
 def obtener_nombre_juego(appid: str) -> str | None:
@@ -124,7 +124,7 @@ def guardar_dlcs(carpeta_settings: str, appid: str) -> None:
             nombre = obtener_nombre_dlc(dlc_id)
             if nombre:
                 f.write(f"{dlc_id}={nombre}\n")
-                print(f"  ✔ {dlc_id}={nombre}")
+                print(f"{dlc_id}={nombre}")
 
     print("dlc.txt guardado.")
 
